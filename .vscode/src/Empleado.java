@@ -29,13 +29,9 @@ public class Empleado {
         return horasTrabajadas > 40 ? (horasTrabajadas - 40) * 50 : 0;
     }
 
-    private double bonoPorDepartamento() {
-        return switch (departamento) {
-            case "Sistemas" -> 20;
-            case "Contabilidad" -> 10;
-            default -> 0;
-        };
-    }
+   private double bonoPorDepartamento() {
+    return departamento.getBono();
+}
 
     public void imprimirDetalles() {
         System.out.println("Nombre: " + nombre);
