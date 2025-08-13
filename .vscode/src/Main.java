@@ -2,9 +2,23 @@ public class Main {
     public static void main(String[] args) {
         Empresa empresa = new Empresa();
 
-        EmpleadoPorHoras emp1 = new EmpleadoPorHoras("Dario Laborde", 45, 15, "Sistemas", "Masculino");
-        EmpleadoFijo emp2 = new EmpleadoFijo("Jorge Gaibor",700,45,"Contabilidad",40, "Masculino");
-        EmpleadoTemporario emp3 = new EmpleadoTemporario("Jordan Salinas",200,20,"Medico",6, "Masculino");
+        Departamento depSistemas = new DepartamentoSistemas();
+        Departamento depContabilidad = new DepartamentoContabilidad();
+        Departamento depMedico = new Departamento() {
+            @Override
+            public double getSalarioTotal(double salarioBase) {
+                return salarioBase + 15;
+            }
+
+            @Override
+            public double getBono() {
+                return 15;
+            }
+        };
+
+        EmpleadoPorHoras emp1 = new EmpleadoPorHoras("Dario Laborde", 45, 15, depSistemas, "Masculino");
+        EmpleadoFijo emp2 = new EmpleadoFijo("Jorge Gaibor", 700, 45, depContabilidad, 40, "Masculino");
+        EmpleadoTemporario emp3 = new EmpleadoTemporario("Jordan Salinas", 200, 20, depMedico, 6, "Masculino");
 
         empresa.contratarEmpleado(emp1);
         empresa.contratarEmpleado(emp2);
