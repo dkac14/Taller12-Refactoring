@@ -2,11 +2,11 @@ public class Empleado {
     private String nombre;
     private double salarioBase;
     private int horasTrabajadas;
-    private String departamento;
+    private Departamento departamento;
     private double tarifaHora;
 
     public Empleado(){}
-    public Empleado(String nombre, double salarioBase, int horasTrabajadas, double tarifaHora, String departamento) {
+    public Empleado(String nombre, double salarioBase, int horasTrabajadas, double tarifaHora, Departamento departamento) {
         this.nombre = nombre;
         this.salarioBase = salarioBase;
         this.horasTrabajadas = horasTrabajadas;
@@ -17,7 +17,7 @@ public class Empleado {
     public double calcularSalario() {
         validarSalarioYHoras();
         double salarioTotal = salarioBase + calcularHorasExtra() + bonoPorDepartamento();
-        return salarioTotal;
+        return departamento.getSalarioTotal(salarioTotal);
     }
 
     private void validarSalarioYHoras() {
@@ -76,11 +76,11 @@ public class Empleado {
         this.tarifaHora = tarifaHora;
     }
 
-    public String getDepartamento() {
+    public Departamento getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(String departamento) {
+    public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
 
